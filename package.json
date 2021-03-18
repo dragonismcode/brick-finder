@@ -14,7 +14,6 @@
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "mongodb": "^3.6.4",
-    "mysql": "^2.18.1",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7"
   }
