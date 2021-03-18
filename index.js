@@ -6,7 +6,7 @@ const port = 3000;
 var fetch = require("node-fetch");
 const fs = require('fs')
 const path = require('path');
-var latestid = require('./id.json');
+var latestid = require('./resources/id.json');
 
 function checkLatest() {
     fetch("https://api.brick-hill.com/v1/user/profile?id=" + latestid.id).then(
@@ -29,9 +29,9 @@ function checkLatest() {
                         id: data.id
                     }
 
-                    fs.writeFileSync('file.json', JSON.stringify(newInfo));
+                    fs.writeFileSync('resources/file.json', JSON.stringify(newInfo));
                     console.log("// Updated API")
-                    fs.writeFileSync('id.json', JSON.stringify(newID));
+                    fs.writeFileSync('resources/id.json', JSON.stringify(newID));
                     console.log("// Saved into id.json")
 
                     latestid.id = +latestid.id + 1;
@@ -48,7 +48,7 @@ setInterval(checkLatest, pingsPerMilisecond);
 
 app.get('/api', (req, res) => {
     console.log("🔔 Someone just pinged the API!")
-    res.sendFile(path.join(__dirname, 'file.json'));
+    res.sendFile(path.join(__dirname, 'resources/file.json'));
 });
 
 app.get("/", (req, res) => res.send("Wasabi made this API."));
